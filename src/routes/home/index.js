@@ -1,11 +1,9 @@
-import { h } from 'preact';
-import style from './style';
+import Header from '../../components/header';
 
 const Home = () => (
-	<header>
-		<span class="small">It's</span>
-		<span>NaN</span>
-	</header>
+	<section class="container">
+		<Header></Header>
+	</section>
 );
 
 export default Home;
