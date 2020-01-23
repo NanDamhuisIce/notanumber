@@ -8,8 +8,8 @@ export default class Header extends Component {
     }
 	render() {
 		return (
-            <header>
-                {/* <span id="headerTextOne" class="small">It's</span> */}
+            <header ref={(ref) => this.header = ref}>
+                <span id="headerTextOne" class="small">It's</span>
                 <span id="headerTextTwo" ref={(ref) => this.headerTextTwo = ref}>NaN</span>
             </header>
 		);
@@ -21,12 +21,12 @@ export default class Header extends Component {
 
     transformHeaderText(scroll) {
         const maxMultiplier = 100;
-        const step = 7;
+        const step = 3;
 
         const stepsTaken = Math.floor(scroll/step);
-        const shrinkPercentage = stepsTaken < maxMultiplier ? maxMultiplier - stepsTaken : maxMultiplier;
-
-        this.headerTextTwo.style.transform = `scale(${(shrinkPercentage / 100)})`;
+        let shrinkPercentage = stepsTaken < maxMultiplier ? maxMultiplier - stepsTaken : maxMultiplier;
+        this.headerTextTwo.style.transform = `scale(${(shrinkPercentage / 100)}) translateY(${shrinkPercentage - (scroll * 1.5)}px)`;
+        this.header.style.height = `calc(${shrinkPercentage}vh)`;
     }
  
     updateScroll () {
